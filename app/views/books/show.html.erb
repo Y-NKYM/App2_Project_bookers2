@@ -1,2 +1,12 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<h2>Book detail</h2>
+<div>
+  <table>
+    <tbody>
+      <tr>
+        <%= render 'book_table', book: @book %>
+        <td><%= link_to 'Edit', edit_book_path %></td>
+        <td><%= link_to 'Destroy', edit_book_path %></td> <!--仮-->
+      </tr>
+    </tbody>
+  </table>
+</div>
