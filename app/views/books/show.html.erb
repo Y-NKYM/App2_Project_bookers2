@@ -4,8 +4,10 @@
     <tbody>
       <tr>
         <%= render 'book_table', book: @book %>
+        <% if @book.user == current_user%>
         <td><%= link_to 'Edit', edit_book_path %></td>
-        <td><%= link_to 'Destroy', edit_book_path %></td> <!--仮-->
+        <td><%= link_to 'Destroy', book_path(@book), method: :delete %></td>
+        <% end %>
       </tr>
     </tbody>
   </table>

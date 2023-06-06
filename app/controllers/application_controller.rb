@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_premitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    user_show_path
+    users_show_path
   end
 
   def after_sign_out_path_for(resource)
