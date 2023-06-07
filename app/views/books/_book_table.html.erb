@@ -1,8 +1,8 @@
 <td>
-  <%= link_to users_show_path do %>
+  <%= link_to users_path do %>
     <% image_tag book.user.get_image(100, 100) %>
   <% end %>
-  <%= link_to book.user.name, users_show_path %>
+  <%= link_to book.user.name, users_path %>
 </td>
 <td><%= link_to book.title, book_path(book.id) %></td>
 <td><%= book.opinion %></td>

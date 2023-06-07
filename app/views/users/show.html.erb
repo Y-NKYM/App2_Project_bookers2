@@ -1,2 +1,19 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render 'user_info', user: @user %>
+
+<h2>Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @books.each do |book| %>
+      <%= render 'books/book_table', book: book %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
