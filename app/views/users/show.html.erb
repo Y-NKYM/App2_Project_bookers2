@@ -1,4 +1,4 @@
-<%= render 'user_info', user: @user %>
+<%= render 'layouts/section', user: @user, book: @book_new %>
 
 <h2>Books</h2>
 <table>
@@ -10,10 +10,10 @@
     </tr>
   </thead>
   <tbody>
+    <% @books.each do |b| %>
     <tr>
-      <% @books.each do |book| %>
-      <%= render 'books/book_table', book: book %>
-      <% end %>
+      <%= render 'books/book_table', book: b %>
     </tr>
+    <% end %>
   </tbody>
 </table>
