@@ -1,29 +1,49 @@
     <header>
+      <div>
+        <%= link_to "Bookers", root_path %>
+      </div>
+
     <% if user_signed_in? %>
       <li>
-        <%= link_to "Home", user_path(current_user.id) %>
+        <%= link_to user_path(current_user.id) do %>
+          <span><i class="fa-solid fa-house-chimney"></i></span> Home
+        <% end %>
       </li>
       <li>
-        <%= link_to "Users", users_path %>
+        <%= link_to users_path do %>
+        <span><i class="fa-solid fa-users"></i></span> Users
+        <% end %>
       </li>
       <li>
-        <%= link_to "Books", books_path %>
+        <%= link_to books_path do %>
+        <span><i class="fa-solid fa-book-open"></i></span> Books
+        <% end %>
       </li>
       <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+        <span><i class="fa-solid fa-right-from-bracket"></i></span> Log out
+        <% end %>
       </li>
     <% else %>
       <li>
-        <%= link_to "Home", root_path %>
+        <%= link_to root_path do %>
+        <span><i class="fa-solid fa-house-chimney"></i></span> Home
+        <% end %>
       </li>
       <li>
-        <%= link_to "About", about_path %>
+        <%= link_to about_path do %>
+        <span><i class="fa-solid fa-link"></i></span> About
+        <% end %>
       </li>
       <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to new_user_registration_path do %>
+        <span><i class="fa-solid fa-user-plus"></i></span> Sign up
+        <% end %>
       </li>
       <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to new_user_session_path do %>
+        <span><i class="fa-solid fa-right-to-bracket"></i></span> Sign in
+        <% end %>
       </li>
     <% end %>
 
