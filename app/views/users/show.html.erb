@@ -1,19 +1,33 @@
-<%= render 'layouts/section', user: @user, book: @book_new %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
 
-<h2>Books</h2>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Opinion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |b| %>
-    <tr>
-      <%= render 'books/book_table', book: b %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="col-md-3">
+    <%= render 'layouts/section', user: @user, book: @book_new %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |b| %>
+          <tr>
+            <%= render 'books/book_table', book: b %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
+

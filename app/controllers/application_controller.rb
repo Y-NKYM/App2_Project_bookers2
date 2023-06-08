@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_premitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
+    flash[:notice] = "Welcome! You have sign up successfully."
     user_path(resource.id)
   end
 
