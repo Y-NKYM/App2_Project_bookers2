@@ -1,8 +1,9 @@
 <div class="container px-5 px-sm-0">
+  <%= render "layouts/form_errors", model: @book %>
   <div class="row">
 
     <div class="col-md-3">
-    <%= render 'layouts/section', user: current_user, book: @book_new %>
+      <%= render 'layouts/section', user: current_user, book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>

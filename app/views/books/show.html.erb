@@ -1,18 +1,19 @@
 <div class="container px-5 px-sm-0">
+  <%= render "layouts/form_errors", model: @book %>
   <div class="row">
 
     <div class="col-md-3">
-      <%= render 'layouts/section', user: @user, book: @book_new %>
+      <%= render 'layouts/section', user: @user, book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
         <table class="table">
           <tbody>
             <tr>
-              <%= render 'book_table', book: @book, size: 100 %>
-              <% if @book.user == current_user%>
+              <%= render 'book_table', book: @book_show, size: 100 %>
+              <% if @book_show.user == current_user%>
               <td><%= link_to 'Edit', edit_book_path, class: "btn btn-success" %></td>
-              <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
+              <td><%= link_to 'Destroy', book_path(@book_show), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
               <% end %>
             </tr>
           </tbody>
