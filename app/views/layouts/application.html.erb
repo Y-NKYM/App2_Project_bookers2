@@ -13,8 +13,13 @@
   </head>
 
   <body>
+
 <%= render "layouts/navigation" %>
-<div><%= flash[:notice] %></div>
+  <div>
+    <p>
+      <%= flash[:notice] %>
+    </p>
+  </div>
 
     <%= yield %>
 <%= render "layouts/footer" %>
