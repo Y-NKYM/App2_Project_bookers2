@@ -1,16 +1,23 @@
-<%= render 'layouts/section', user: @user, book: @book_new %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
 
-<h2>Book detail</h2>
-<div>
-  <table>
-    <tbody>
-      <tr>
-        <%= render 'book_table', book: @book %>
-        <% if @book.user == current_user%>
-        <td><%= link_to 'Edit', edit_book_path %></td>
-        <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+    <div class="col-md-3">
+      <%= render 'layouts/section', user: @user, book: @book_new %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <%= render 'book_table', book: @book, size: 100 %>
+              <% if @book.user == current_user%>
+              <td><%= link_to 'Edit', edit_book_path, class: "btn btn-success" %></td>
+              <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
+              <% end %>
+            </tr>
+          </tbody>
+         </table>
+    </div>
+
+  </div>
 </div>

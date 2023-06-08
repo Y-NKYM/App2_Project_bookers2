@@ -1,6 +1,10 @@
 <td>
   <%= link_to user_path(book.user.id) do %>
-    <% image_tag book.user.get_image(80, 80) %>
+    <% image_tag book.user.get_image(size, size) %>
+  <% end %>
+  <br>
+  <% unless current_page?(books_path) || current_page?(user_path(book.user))  %>
+    <%= link_to book.user.name, user_path(book.user.id) %>
   <% end %>
 </td>
 <td><%= link_to book.title, book_path(book.id) %></td>
