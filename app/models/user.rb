@@ -18,5 +18,6 @@ class User < ApplicationRecord
   end
 
   validates :name, length: {minimum: 2}
+  validates :introduction, length: { maximum: 50 }
 
 end
