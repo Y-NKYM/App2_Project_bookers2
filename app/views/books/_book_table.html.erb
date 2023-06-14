@@ -3,9 +3,12 @@
     <% image_tag book.user.get_profile_image(size, size) %>
   <% end %>
   <br>
+  <!-- Showでは名前を表示するけど、BookIndexでは表示しないため -->
+  <!-- books/index, user/show内のbooks以外で表示 -->
   <% unless current_page?(books_path) || current_page?(user_path(book.user))  %>
     <%= link_to book.user.name, user_path(book.user.id) %>
   <% end %>
 </td>
 <td><%= link_to book.title, book_path(book.id) %></td>
 <td><%= book.body %></td>
+<td>コメント数：<%= book.book_comments.count %></td>

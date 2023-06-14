@@ -16,8 +16,36 @@
               <td><%= link_to 'Destroy', book_path(@book_show), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
               <% end %>
             </tr>
-          </tbody>
+     </tbody>
          </table>
+         <!--コメント表示-->
+          <% @book_show.book_comments.each do |comment| %>
+            <div class="card mb-3" style="width: 50%">
+            <div class="row p-2">
+            <div class="col-4">
+              <%= image_tag comment.user.get_profile_image(80,80) %>
+              <p class="card-text"><%= comment.user.name %></p>
+            </div>
+              <div class="col d-flex flex-column">
+                <p class="card-text m-1"><%= comment.comment %></p>
+                <a class="col-4 btn btn-primary btn-sm mt-auto align-self-end" href="#">Delete</a>
+              </div>
+            </div>
+            </div>
+           <% end %>
+
+
+
+
+         <!--コメントフォーム-->
+         <div>
+           <%= form_with model:[@book_show, @book_comment] do |f| %>
+             <div class="mb-1">
+               <%= f.text_area :comment, rows: "4", class: "form-control" %>
+             </div>
+             <%= f.submit "送信", class: "btn btn-success" %>
+           <% end %>
+         </div>
     </div>
 
   </div>
