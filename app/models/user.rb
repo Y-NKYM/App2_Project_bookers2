@@ -9,7 +9,11 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   # フォロー側
+  # User(follower)モデルのidをRelationshipモデルのfollower_idと関連付ける
   has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 上記はあくまで各UserとRelationshipのidの関連付け。一つのUserからもう一つのUserの情報入手のための記述が以下。
+  # 現在ログインしているUserモデル(follower)からUserモデル(followed)のデータをRelationshipモデルを通して入手できるようにする。
+  # has_many後最初の記述がメソッド名の指定。user.followingsが可能
   has_many :followings, through: :following_relationships, source: :followed
 
   # フォロワー側
@@ -27,7 +31,9 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # ログイン者が各Userをフォローしているかどうか
   def following?(user)
+    # ログイン側(follower)から見てRelationship内に((follower.)id: (followed.)user.id)が存在するかのチェック。
     followings.exists?(id: user.id)
   end
 
