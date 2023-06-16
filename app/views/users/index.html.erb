@@ -30,9 +30,17 @@
   </div>
 </div>
 
-
-
-
+<% @users.each do |user| %>
+<% if current_user.following?(user) %>
+  <p>
+    してる
+  </p>
+<% else %>
+  <p>
+    してない
+  </p>
+<% end %>
+<% end %>
 
 
 
