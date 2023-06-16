@@ -9,12 +9,12 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   # フォロー側
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followings, through: :relationships, source: :followed
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :following_relationships, source: :followed
 
   # フォロワー側
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :follower_relationships, source: :follower
 
   def get_profile_image(width, height)
     unless profile_image.attached?
