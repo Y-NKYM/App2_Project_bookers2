@@ -2,10 +2,22 @@ class RelationshipsController < ApplicationController
   def create
     # following=nilもといparams[:user_id]が存在しない場合の対策のため、直接記入しない。
     following = User.find(params[:user_id])
+    # フォローしたいユーザーが見つからない時のエラーflash
+    if following == nil
+      flash[:notice] = "User you want to follow is not found."
+      redirect_to users_path and return
+    end
     # Relationship内にデータを記入。
   	relationship = Relationship.new(followed_id: following.id, follower_id: current_user.id)
-  	relationship.save
-  	redirect_back(fallback_location: users_path)
+    # 二窓構成により、複数回フォローをできないようにするエラーflash
+    if Relationship.exists?(followed_id: following.id, follower_id: current_user.id)
+      flash[:notice] = "Already followed."
+      redirect_to users_path and return
+    else
+      relationship.save
+      redirect_back(fallback_location: users_path)
+    end
+
   end
 
   def destroy
