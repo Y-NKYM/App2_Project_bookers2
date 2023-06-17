@@ -16,6 +16,7 @@
       <td><%= user.name %></td>
       <td>フォロー数：<%= user.followings.count %></td>
       <td>フォロワー数：<%= user.followers.count %></td>
+      <!--users_pathの時のみ次の<td>反映-->
       <% if current_page?(users_path) %>
         <td>
           <% if current_user.id == user.id %>

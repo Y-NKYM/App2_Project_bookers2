@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
     # フォローしたいユーザーが見つからない時のエラーflash
     if following == nil
       flash[:notice] = "User you want to follow is not found."
+      # 同じアクション内にredirect_toを複数回使用しているのでreturnを付ける。
       redirect_to users_path and return
     end
     # Relationship内にデータを記入。
