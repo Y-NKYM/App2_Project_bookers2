@@ -14,4 +14,16 @@ class RelationshipsController < ApplicationController
     relationship.destroy
     redirect_back(fallback_location: users_path)
   end
+
+  # フォローしているUser一覧
+  def followings
+    user = User.find(params[:user_id])
+    @users = user.followings
+  end
+
+  # フォローされているUser一覧
+  def followers
+    user = User.find(params[:user_id])
+    @users = user.followers
+  end
 end

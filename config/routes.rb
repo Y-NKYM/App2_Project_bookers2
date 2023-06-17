@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update] do
     # URLにRelationshipのidが必要ないので"resource"で良い。
     resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings'
+    get 'followers' => 'relationships#followers'
   end
 end
