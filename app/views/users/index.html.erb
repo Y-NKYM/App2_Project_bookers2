@@ -4,6 +4,7 @@
 
     <div class="col-md-3">
       <%= render 'layouts/section', user: current_user, book: @book %>
+
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
@@ -23,8 +24,8 @@
           <tr>
             <td><%= image_tag user.get_profile_image(100, 100) %></td>
             <td><%= user.name %></td>
-            <td>フォロー数：<%= user.followers.count %></td>
             <td>フォロー数：<%= user.followings.count %></td>
+            <td>フォロワー数：<%= user.followers.count %></td>
             <td>
               <% if current_user.id == user.id %>
                 <p></p>
