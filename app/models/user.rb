@@ -37,6 +37,8 @@ class User < ApplicationRecord
     followings.exists?(id: user.id)
   end
 
+  #looksクラスメソッドを作成
+  #検索方法に
   def self.looks(word, search)
     if search == 'perfect_match'
       @users = User.where("name LIKE ?", "#{word}")

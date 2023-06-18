@@ -10,6 +10,8 @@ class Book < ApplicationRecord
       favorites.exists?(user_id: user.id)
   end
 
+  #looksクラスメソッドを作成
+  #検索方法について
   def self.looks(word, search)
     if search == 'perfect_match'
       @books = Book.where("title LIKE ?", "#{word}")
