@@ -1,0 +1,16 @@
+<% if @range = User %>
+
+<ul>
+  <% @users.each do |user| %>
+  <li><%= user.name %></li>
+  <% end %>
+</ul>
+
+<% else %>
+<ul>
+  <% @books.each do |book| %>
+  <li><%= book.name %></li>
+  <% end %>
+</ul>
+
+<% end %>
