@@ -4,9 +4,11 @@
       <th>image</th>
       <th>name</th>
       <th></th>
+      <% unless current_page?(search_path) %>
       <th></th>
       <th></th>
       <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +16,11 @@
     <tr>
       <td><%= image_tag user.get_profile_image(50, 50) %></td>
       <td><%= user.name %></td>
+      <!-- 検索ツールにはフォローフォロワー数を表示しない -->
+      <% unless current_page?(search_path) %>
       <td>フォロー数：<%= user.followings.count %></td>
       <td>フォロワー数：<%= user.followers.count %></td>
+      <% end %>
       <!--users_pathの時のみ次の<td>反映-->
       <% if current_page?(users_path) %>
         <td>

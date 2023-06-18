@@ -1,16 +1,28 @@
-<% if @range = User %>
-
-<ul>
-  <% @users.each do |user| %>
-  <li><%= user.name %></li>
-  <% end %>
-</ul>
-
-<% else %>
-<ul>
-  <% @books.each do |book| %>
-  <li><%= book.name %></li>
-  <% end %>
-</ul>
-
-<% end %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col">
+        <% if @range == "User" %>
+          <h2>Users search for "<%= @word %>"</h2>
+          <%= render 'relationships/user_details', users: @users%>
+        <% else %>
+        <h2>Books search for "<%= @word %>"</h2>
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th id="test">Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @books.each do |book| %>
+              <tr>
+                <%= render 'books/book_table', book: book, size: 50 %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% end %>
+    </div>
+  </div>
+</div>
