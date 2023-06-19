@@ -66,3 +66,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'image_processing', '~>1.2'
 # Devise
 gem 'devise'
+# jQuery
+gem 'jquery-rails'
