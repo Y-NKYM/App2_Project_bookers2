@@ -1,11 +1,7 @@
 <%= form_with url: search_path, local:true, method: :get do |f| %>
-<<<<<<< HEAD
 <!-- 検索フォームを中央に寄せる-->
 <div class="container-fluid d-flex justify-content-center">
   <!-- フォームを横並び・全体の幅を変更-->
-=======
-<div class="container-fluid d-flex justify-content-center">
->>>>>>> 039e65f706a70a8a8d6d8c00a0b9b55c44f6e4c3
   <div class="form-row form-group col-8">
     <%= f.text_field :word, class: "form-control col mx-2" %>
     <%= f.select :range, options_for_select([['User'], ['Book']]), {}, class: "form-control col mx-2" %>
