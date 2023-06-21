@@ -9,6 +9,20 @@
       <%= f.label :body, class: "form-label" %>
       <%= f.text_area :body, class: "form-control" %>
     </div>
+    <div id="post_raty">
+      <% f.label :score, 'Rating' %>
+    </div>
     <%= f.submit 'Create Book', class: "btn btn-success" %>
+
+
+  <script>
+    let elem = document.querySelector('#post_raty');
+    let opt = {
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      scoreName: 'book[score]'
+    };
+    raty(elem, opt);
+  </script>
   <% end %>
 </div>

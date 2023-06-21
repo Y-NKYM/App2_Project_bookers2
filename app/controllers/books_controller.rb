@@ -24,6 +24,7 @@ class BooksController < ApplicationController
     @book_comment = BookComment.new
     @book_show = Book.find(params[:id])
     @user = @book_show.user
+
   end
 
   def edit
@@ -50,7 +51,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :score)
   end
 
   def is_matching_login_user

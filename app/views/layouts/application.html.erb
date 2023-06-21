@@ -22,18 +22,6 @@
     </p>
   </div>
 
-<div id="post_raty"></div>
-<script>
-  let elem = document.querySelector('#post_raty');
-  let opt = {
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-  };
-  raty(elem, opt);
-</script>
-
     <%= yield %>
 <%= render "layouts/footer" %>
 

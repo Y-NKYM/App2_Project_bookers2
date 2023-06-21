@@ -19,3 +19,17 @@
   </td>
   <td>コメント数：<%= book.book_comments.count %></td>
 <% end %>
+  <td>
+    <div id="get_raty_<%= book.id %>"></div>
+  </td>
+
+  <script>
+    let get_elem = document.querySelector('#get_raty_<%= book.id %>');
+    let get_opt = {
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      readOnly: true,
+      score: <%= book.score %>,
+    };
+    raty(get_elem, get_opt);
+  </script>
