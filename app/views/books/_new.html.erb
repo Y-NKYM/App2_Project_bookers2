@@ -13,18 +13,22 @@
       <% f.label :score, 'Rating' %>
     </div>
     <%= f.submit 'Create Book', class: "btn btn-success" %>
-
-
-  <script>
-    var elem = document.querySelector('#post_raty');
-    if (elem.children.length == 0) {
-      var opt = {
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName: 'book[score]'
-    };
-    raty(elem, opt);
-    };
-  </script>
   <% end %>
 </div>
+
+<script>
+  // Raty用JavaScript: 実際に五段階表記はraty()によって作られている。
+  // elem：div要素位置の特定
+  // opt：ratyに使用する画像、オプション（編集不可、値等）を設定
+  var elem = document.querySelector('#post_raty');
+  // Turbolinkにより、ブラウザバック時Javascriptが余分にもう一度読まれるのを、
+  // 「値がすでに入っている場合行わない」ことで回避。
+  if (elem.children.length == 0) {
+    var opt = {
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'book[score]'
+  };
+  raty(elem, opt);
+  };
+</script>

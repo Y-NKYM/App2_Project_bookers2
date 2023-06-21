@@ -13,25 +13,32 @@
 <td><%= link_to book.title, book_path(book.id) %></td>
 <td><%= book.body %></td>
 <% unless current_page?(search_path) %>
-  <!-- "book.each do"の記述が最先頭にあるため、いいねボタン事にidが変わる -->
-  <td id="favorite_buttons_<%= book.id %>">
-    <%= render 'favorites/favorite', book: book %>
-  </td>
-  <td>コメント数：<%= book.book_comments.count %></td>
+<!-- "book.each do"の記述が最先頭にあるため、いいねボタン事にidが変わる -->
+<td id="favorite_buttons_<%= book.id %>">
+  <%= render 'favorites/favorite', book: book %>
+</td>
+<td>コメント数：<%= book.book_comments.count %></td>
 <% end %>
-  <td>
-    <div id="get_raty_<%= book.id %>"></div>
-  </td>
+<td>
+  <!--divを用意し、idをJavaScript内のquerySelectorと合わせることで、要素位置を決める。-->
+  <div id="get_raty_<%= book.id %>"></div>
+</td>
 
-  <script>
-    var get_elem = document.querySelector('#get_raty_<%= book.id %>');
-    if (get_elem.children.length == 0) {
-      var get_opt = {
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      readOnly: true,
-      score: <%= book.score.nil? ? 0 : book.score %>
-      };
-      raty(get_elem, get_opt);
-    }
-  </script>
+<script>
+  // Raty用JavaScript: 実際に五段階表記はraty()によって作られている。
+  // get_elem：div要素位置の特定
+  // get_opt：ratyに使用する画像、オプション（編集不可、値等）を設定
+  var get_elem = document.querySelector('#get_raty_<%= book.id %>');
+  // Turbolinkにより、ブラウザバック時Javascriptが余分にもう一度読まれるのを、
+  // 「値がすでに入っている場合行わない」ことで回避。
+  if (get_elem.children.length == 0) {
+    var get_opt = {
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    readOnly: true,
+    // score: 条件 ? trueの場合 : falseの場合（一行if文）
+    score: <%= book.score.nil? ? 0 : book.score %>
+    };
+    raty(get_elem, get_opt);
+  }
+</script>

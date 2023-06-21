@@ -13,6 +13,8 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
+// ダウンロードしたRaty.jsをapplication.js内に入れる。
+// インスタンスメソッド化＋初期化により、raty()が可能になる。
 import Raty from "raty.js"
 window.raty = function(elem, opt) {
   let raty = new Raty(elem, opt);
