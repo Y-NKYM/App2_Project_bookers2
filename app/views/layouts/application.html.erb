@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/4153b5f8e1.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -21,7 +22,20 @@
     </p>
   </div>
 
+<div id="post_raty"></div>
+<script>
+  let elem = document.querySelector('#post_raty');
+  let opt = {
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+  };
+  raty(elem, opt);
+</script>
+
     <%= yield %>
 <%= render "layouts/footer" %>
+
   </body>
 </html>
