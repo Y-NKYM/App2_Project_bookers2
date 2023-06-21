@@ -1,1 +1,6 @@
-$("#favorite_error").html("<%= j(render 'favorites/favorite_error') %>");
+<!--
+ユーザーがしたいことは単純明快なので、変にエラーを教えるのではなく、（データベース内ではすでに実行し終えていて、表示だけできていない状況なので）
+表示を変えるのみで良い。よって、createやdestroyと同じく、HTML変更を行えばよい。
+コントローラーのデータベースへの保存が行われていないので、ユーザーの再度クリックが悪さをすることはない。
+-->
+$('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite", book: @book) %>");

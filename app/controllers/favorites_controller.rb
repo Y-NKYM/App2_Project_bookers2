@@ -6,7 +6,7 @@ class FavoritesController < ApplicationController
     # ブラウザバックによりいいねが反映されていない場合エラーメッセージを出す。
     if Favorite.exists?(book_id: @book.id, user_id: current_user.id)
       # error.js.erbを通して_favorite_error.htmlが読み込まれる。
-      flash[:error] = "The page is not up to date. Please reload page."
+      # flash[:error] = "The page is not up to date. Please reload page."
       render :error
     else
       favorite.save
@@ -24,7 +24,7 @@ class FavoritesController < ApplicationController
       render :destroy
     else
       # error.js.erbを通して_favorite_error.htmlが読み込まれる。
-      flash[:error] = "The page is not up to date. Please reload page."
+      # flash[:error] = "The page is not up to date. Please reload page."
       render :error
     end
     # redirect_back(fallback_location: books_path)
