@@ -16,13 +16,15 @@
 
 
   <script>
-    let elem = document.querySelector('#post_raty');
-    let opt = {
+    var elem = document.querySelector('#post_raty');
+    if (elem.children.length == 0) {
+      var opt = {
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
       scoreName: 'book[score]'
     };
     raty(elem, opt);
+    };
   </script>
   <% end %>
 </div>
