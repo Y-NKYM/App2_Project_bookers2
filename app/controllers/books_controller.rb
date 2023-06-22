@@ -16,6 +16,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
+    # Book.allの順番を変え可能にする。
     order = params[:order]
     case order
     when nil then
