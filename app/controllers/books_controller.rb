@@ -20,6 +20,8 @@ class BooksController < ApplicationController
     case order
     when nil then
       @books = Book.all
+    when 'new'
+      @books = Book.all.order("created_at DESC")
     when 'high-score'
       @books = Book.all.order("score DESC")
     else

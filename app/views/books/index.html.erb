@@ -10,7 +10,7 @@
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <div>
-        <%= link_to '新しい順', books_path, remote: true %>
+        <%= link_to '新しい順', books_path(order: 'new'), remote: true %>
           <span> | </span>
         <%= link_to '評価の高い順', books_path(order: 'high-score'), remote: true%>
       </div>
