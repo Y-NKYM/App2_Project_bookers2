@@ -9,8 +9,9 @@
       <%= f.label :body, class: "form-label" %>
       <%= f.text_area :body, class: "form-control" %>
     </div>
-    <div id="post_raty">
-      <% f.label :score, 'Rating' %>
+    <div class="mb-3 d-flex">
+      <p class="mr-1">Rate</p>
+      <div id="post_raty"></div>
     </div>
     <%= f.submit 'Create Book', class: "btn btn-success" %>
   <% end %>
