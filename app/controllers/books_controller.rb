@@ -16,7 +16,16 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
+    order = params[:order]
+    case order
+    when nil then
+      @books = Book.all
+    when 'high-score'
+      @books = Book.all.order("score DESC")
+    else
+      @books = Book.all
+    end
+
   end
 
   def show
