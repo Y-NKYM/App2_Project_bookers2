@@ -6,6 +6,5 @@ class CreateBookTags < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :book_tags, [:book_id, :tag_id], unique: true
   end
 end
