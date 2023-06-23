@@ -43,11 +43,14 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @tag_list=@book.tags.pluck(:name).join(' ')
   end
 
   def update
     book = Book.find(params[:id])
+    tag_list = params[:book][:name].split(nil)
     if book.update(book_params)
+      book.get_tag(tag_list)
       flash[:notice] = "You have updated book successfully."
       redirect_to book_path(book.id)
     else
