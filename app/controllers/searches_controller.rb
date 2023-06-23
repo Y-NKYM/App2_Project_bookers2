@@ -12,4 +12,13 @@ class SearchesController < ApplicationController
     end
   end
 
+  def search_tag
+    @word = params[:word]
+    # @books = params[:word].present? ? Tag.find_by(name: params[:word]).books : Book.all
+    if @word.present?
+      @books = Tag.find_by(name: @word).books
+    else
+      @books = Book.all
+    end
+  end
 end

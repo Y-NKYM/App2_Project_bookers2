@@ -1,3 +1,9 @@
+<%= form_with url: search_tag_path, method: :get do |f| %>
+  <div>
+    <%= f.text_field :word, class: "form-control col mx-2" %>
+    <%= f.submit "検索", class: "btn btn-info" %>
+  </div>
+<% end %>
 <%= render 'layouts/search_form' %>
 <div class="container px-5 px-sm-0">
 

@@ -31,7 +31,7 @@ class Book < ApplicationRecord
 
   def get_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
-    current_tags = tags.pluck(:name) unless self.tags.nil?
+    current_tags = tags.pluck(:name) unless tags.nil?
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
     # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
