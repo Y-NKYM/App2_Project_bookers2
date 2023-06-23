@@ -1,0 +1,6 @@
+<%= form_with url: search_tag_path, method: :get, class: "w-75" do |f| %>
+<div class="form-row form-group ml-5">
+      <%= f.text_field :word, class: "form-control col mx-2", placeholder: "タグ検索" %>
+      <%= f.submit "検索", class: "btn btn-info" %>
+</div>
+<% end %>

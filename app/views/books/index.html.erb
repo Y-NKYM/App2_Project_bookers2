@@ -1,10 +1,12 @@
-<%= form_with url: search_tag_path, method: :get do |f| %>
-  <div>
-    <%= f.text_field :word, class: "form-control col mx-2" %>
-    <%= f.submit "検索", class: "btn btn-info" %>
+  <!-- 検索フォームを中央に寄せる-->
+<div class="container px-5 px-sm-0">
+  <!-- フォームを横並び・全体の幅を変更-->
+  <div class="d-flex justify-content-center">
+      <%= render 'layouts/search_form' %>
+      <%= render 'layouts/search_tag_form' %>
   </div>
-<% end %>
-<%= render 'layouts/search_form' %>
+</div>
+
 <div class="container px-5 px-sm-0">
 
   <%= render "layouts/form_errors", model: @book %>
