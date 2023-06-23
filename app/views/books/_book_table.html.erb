@@ -19,7 +19,11 @@
 </td>
 <td>コメント数：<%= book.book_comments.count %></td>
 <% end %>
-<td>タグ：<%= book.tags.count %></td>   <!--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
+<td>
+  <% book.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</td>   <!--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-->
 <td>
   <!--divを用意し、idをJavaScript内のquerySelectorと合わせることで、要素位置を決める。-->
   <div id="get_raty_<%= book.id %>"></div>
