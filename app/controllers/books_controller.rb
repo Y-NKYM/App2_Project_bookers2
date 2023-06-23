@@ -4,7 +4,9 @@ class BooksController < ApplicationController
   def create
     book = Book.new(book_params)
     book.user_id = current_user.id
+    tag_list = params[:book][:name].split(nil)
     if book.save
+      book.get_tag(tag_list)
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(book.id)
     else
@@ -28,7 +30,7 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
+    @tag_list = Tag.all
   end
 
   def show
