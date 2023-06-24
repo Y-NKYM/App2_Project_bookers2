@@ -30,7 +30,6 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-    @tag_list = Tag.all
   end
 
   def show
