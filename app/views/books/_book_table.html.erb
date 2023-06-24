@@ -21,7 +21,9 @@
 <% end %>
 <td>
   <% book.tags.each do |tag| %>
-    <%= tag.name %>
+    <%= link_to search_tag_path(word: "#{tag.name}") do %>
+      <%= tag.name %>
+    <% end %>
   <% end %>
 </td>
 <td>
