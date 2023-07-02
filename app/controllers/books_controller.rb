@@ -16,7 +16,8 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
+    order = params[:order]
+    @books = order_books(order)
   end
 
   def show
@@ -57,6 +58,18 @@ class BooksController < ApplicationController
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to books_path
+    end
+  end
+
+  def order_books(order)
+    if !order then
+      @books = Book.all
+    elsif order == "post"
+      @books = Book.order(created_at: :DESC)
+    elsif order == "favorite"
+      @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    else
+      @books = Book.all
     end
   end
 
