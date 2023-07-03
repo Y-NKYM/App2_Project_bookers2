@@ -9,6 +9,7 @@
         <p>
           <%= m.content %> - <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
         </p>
+        <%= link_to "Delete", room_message_path(@room.id, m.id) %>
       </div>
   <% end %>
 <% end %>

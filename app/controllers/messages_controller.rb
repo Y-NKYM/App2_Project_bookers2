@@ -2,11 +2,26 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def create
-    if Entry.where(user_id: current_user.id, room_id: params[:message][:room_id]).present?
-      @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id).merge(user_id: current_user.id))
+    message = Message.new(message_params)
+    message.user_id = current_user.id
+    message.room_id = params[:room_id]
+byebug
+    if message.save
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "メッセージ送信に失敗しました。"
+      redirect_back(fallback_location: root_path)
     end
-    redirect_back(fallback_location: root_path)
+  end
+
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    redirect_to room_path(params[:room_id])
+  end
+
+  private
+  def message_params
+    params.require(:message).permit(:content, :user_id, :room_id)
   end
 end
