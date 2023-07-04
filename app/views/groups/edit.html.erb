@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>Editing Group</h2>
+      <%# <%= render "layouts/form_errors", model: @user %>
+      <%= form_with model: @group do |f| %>
+        <%= render 'groups/group_form', f: f %>
+        <%= f.submit "Update Group", class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>

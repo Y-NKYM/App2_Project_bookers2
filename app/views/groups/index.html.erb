@@ -1,0 +1,35 @@
+<%= render 'layouts/search_form' %>
+<div class="container px-5 px-sm-0">
+
+  <%# <%= render "layouts/form_errors", model: @book %>
+  <div class="row">
+
+    <div class="col-md-3">
+      <%= render 'layouts/section', user: current_user, book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Groups</h2>
+      <span>
+        <%= link_to 'グループを作成する', new_group_path %>
+      </span>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th id="test">グループ名</th>
+            <th>紹介文</th>
+            <th col="2"><th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+          <tr>
+            <%= render 'groups/group_table', group: group %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
