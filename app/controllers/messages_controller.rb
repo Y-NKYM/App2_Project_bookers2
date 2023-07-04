@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
     message = Message.new(message_params)
     message.user_id = current_user.id
     message.room_id = params[:room_id]
-byebug
     if message.save
       redirect_back(fallback_location: root_path)
     else
@@ -22,6 +21,6 @@ byebug
 
   private
   def message_params
-    params.require(:message).permit(:content, :user_id, :room_id)
+    params.require(:message).permit(:content, :room_id)
   end
 end

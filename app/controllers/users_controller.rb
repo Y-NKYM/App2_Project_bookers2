@@ -14,12 +14,6 @@ class UsersController < ApplicationController
     @another_entry = Entry.where(user_id: @user.id)
     # 選択しているUserが自分自身でない場合、自分と相手のidを変数へ保存
 	  unless @user.id == current_user.id then
-	   # byebug
-    #   sum = 0
-    #   [1,2,3,4,5].each do |i|
-    #     sum+=1
-
-    #   end
 	    @current_entry.each do |current|
         @another_entry.each do |another|
           # 自分と相手のidを持つroomがEntry内に存在するかチェック。あればroom_idを変数へ保存
@@ -29,9 +23,7 @@ class UsersController < ApplicationController
           end
         end
       end
-      # byebug
       # 部屋が存在していない場合
-
       unless @is_room
         @room = Room.new
         @entry = Entry.new
