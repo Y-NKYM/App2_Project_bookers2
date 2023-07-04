@@ -24,6 +24,8 @@ class BooksController < ApplicationController
     @book = Book.new
     @book_comment = BookComment.new
     @book_show = Book.find(params[:id])
+    access = Access.new(book_id: @book_show.id, user_id: current_user.id)
+    access.save
     @user = @book_show.user
   end
 
