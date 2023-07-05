@@ -3,6 +3,9 @@ class Book < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  has_many :favorited_users, through: :favorites, source: :user
+
+  has_many :accesses, dependent: :destroy
   has_many :book_tags, dependent: :destroy, foreign_key: 'book_id'
   has_many :tags, through: :book_tags
 

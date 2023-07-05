@@ -18,6 +18,7 @@
   <%= render 'favorites/favorite', book: book %>
 </td>
 <td>コメント数：<%= book.book_comments.count %></td>
+<td>閲覧数：<%= book.accesses.count %></td>
 <% end %>
 <td>
   <% book.tags.each do |tag| %>

@@ -20,22 +20,15 @@ class BooksController < ApplicationController
     @book = Book.new
     # Book.allの順番を変え可能にする。
     order = params[:order]
-    case order
-    when nil then
-      @books = Book.all
-    when 'new'
-      @books = Book.all.order("created_at DESC")
-    when 'high-score'
-      @books = Book.all.order("score DESC")
-    else
-      @books = Book.all
-    end
+    @books = order_books(order)
   end
 
   def show
     @book = Book.new
     @book_comment = BookComment.new
     @book_show = Book.find(params[:id])
+    access = Access.new(book_id: @book_show.id, user_id: current_user.id)
+    access.save
     @user = @book_show.user
 
   end
@@ -75,6 +68,36 @@ class BooksController < ApplicationController
     user = User.find(book.user_id)
     unless user.id == current_user.id
       redirect_to books_path
+    end
+  end
+
+    case order
+    when nil then
+      @books = Book.all
+    when 'new'
+      @books = Book.all.order("created_at DESC")
+    when 'high-score'
+      @books = Book.all.order("score DESC")
+    else
+      @books = Book.all
+    end
+
+
+
+  def order_books(order)
+    case order
+    when nil then
+      @books = Book.all
+    when 'new'
+      @books = Book.all.order("created_at DESC")
+    when 'high-score'
+      @books = Book.all.order("score DESC")
+    when "post"
+      @books = Book.order(created_at: :DESC)
+    when "favorite"
+      @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    else
+      @books = Book.all
     end
   end
 

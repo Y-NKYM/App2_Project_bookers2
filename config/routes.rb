@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   end
   get 'search' => 'searches#search'
   get 'search_tag' => 'searches#search_tag'
+  resources :rooms, only: [:create, :show] do
+    resources :messages, only: [:create, :destroy]
+  end
 end
