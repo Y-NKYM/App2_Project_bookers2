@@ -15,12 +15,26 @@
             <th></th>
             <th id="test">グループ名</th>
             <th>紹介文</th>
-            <th col="2"><th>
+            <th>メンバー</th>
+            <th><th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <%= render 'groups/group_table', group: @group %>
+            <td>
+              <% @group.users.each do |member| %>
+              <%= member.name %><br>
+              <% end %>
+            </td>
+            <% if @group.owner_id == current_user.id %>
+            <td><%= link_to 'Edit', edit_group_path(@group.id), class: "btn btn-success" %></td>
+            <td><%= link_to 'Destroy', group_path(@group.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
+            <% elsif @group.users.exists?(current_user.id) %>
+            <td><%= link_to 'Leave this group', group_leave_path(@group.id), method: :delete, class: "btn btn-danger" %></td>
+            <% else %>
+            <td><%= link_to 'Join this group', group_join_path(@group.id), method: :post, class: "btn btn-info" %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>

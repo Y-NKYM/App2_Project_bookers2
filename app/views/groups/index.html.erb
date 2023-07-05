@@ -18,6 +18,7 @@
             <th></th>
             <th id="test">グループ名</th>
             <th>紹介文</th>
+            <th>メンバー数</th>
             <th col="2"><th>
           </tr>
         </thead>
@@ -25,6 +26,8 @@
           <% @groups.each do |group| %>
           <tr>
             <%= render 'groups/group_table', group: group %>
+            <td><%= group.users.count %></td>
+            <td><%= link_to 'Show', group_path(group.id) %></td>
           </tr>
           <% end %>
         </tbody>
