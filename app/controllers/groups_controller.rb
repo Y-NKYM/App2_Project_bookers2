@@ -52,13 +52,25 @@ class GroupsController < ApplicationController
     end
   end
 
+  def event_mail
+  end
+
   def destroy
     group = Group.find(params[:id])
     if group.destroy
       flash[:notice] = "Group deleted successfully"
       redirect_to groups_path
     end
+  end
 
+  def send_mail
+    group = Group.find(params[:group_id])
+    owner = User.find(group.owner_id)
+    member = group.users
+    @title = params[:title]
+    @content = params[:content]
+    GroupMailer.event_mail(owner, member, @title, @content).deliver_now
+    render :sent_mail
   end
 
   private
