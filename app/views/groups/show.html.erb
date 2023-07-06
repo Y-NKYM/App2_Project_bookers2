@@ -28,6 +28,7 @@
               <% end %>
             </td>
             <% if @group.owner_id == current_user.id %>
+            <td><%= link_to 'Event', group_mail_path(@group.id), class: "btn btn-success" %></td>
             <td><%= link_to 'Edit', edit_group_path(@group.id), class: "btn btn-success" %></td>
             <td><%= link_to 'Destroy', group_path(@group.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
             <% elsif @group.users.exists?(current_user.id) %>
