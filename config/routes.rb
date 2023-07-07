@@ -14,6 +14,14 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers'
   end
   get 'search' => 'searches#search'
+  resources :groups, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    post 'join' => 'groups#join'
+    delete 'leave' => 'groups#leave'
+    get 'mail' => 'groups#event_mail'
+    post 'mail' => 'groups#send_mail'
+  end
+  get 'mail/sent' => 'groups#sent_mail'
+
   get 'search_tag' => 'searches#search_tag'
   resources :rooms, only: [:create, :show] do
     resources :messages, only: [:create, :destroy]

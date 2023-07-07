@@ -9,7 +9,28 @@ class UsersController < ApplicationController
   def show
     @book = Book.new
     @user = User.find(params[:id])
-    @books = @user.books
+	  # 日での比較
+	  @today_count = @books.where('created_at > ?', Date.today).count
+	  @yesterday_count = @books.where('created_at > ?', Date.yesterday).count
+	  if @today_count == 0
+	    @today_yesterday_ratio = 0
+    elsif @yesterday_count == 0
+      @today_yesterday_ratio = 0
+    else
+      @today_yesterday_ratio = (@today_count.to_f/@yesterday_count*100).round(0)
+    end
+	  # 週での比較
+	  @week_count = @books.where(created_at: Date.today.all_week).count
+	  @week_ago_count = @books.where(created_at: Date.today.prev_week.all_week).count
+	  if @week_ago_count == 0
+	    @week_ratio = 0
+    elsif @week_count == 0
+      @week_ratio = 0
+    else
+      @week_ratio = (@week_count.to_f/@week_ago_count*100).round(0)
+    end
+
+    # tag用変数
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
     # 選択しているUserが自分自身でない場合、自分と相手のidを変数へ保存

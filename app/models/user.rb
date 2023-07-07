@@ -20,9 +20,12 @@ class User < ApplicationRecord
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
+  # グループ
+  has_many :group_users
+  has_many :groups, through: :group_users, dependent: :destroy
+
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
-
   has_many :accesses, dependent: :destroy
 
   def get_profile_image(width, height)

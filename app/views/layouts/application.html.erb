@@ -16,10 +16,12 @@
   <body>
 
 <%= render "layouts/navigation" %>
-  <div>
-    <p>
+  <div class="flash_margin">
+    <% if flash.any? %>
+    <p class="alert alert-success" role="alert">
       <%= flash[:notice] %>
     </p>
+    <% end %>
   </div>
 
     <%= yield %>

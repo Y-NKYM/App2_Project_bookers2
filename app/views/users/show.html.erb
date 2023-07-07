@@ -24,6 +24,44 @@
           <% end %>
         </tbody>
       </table>
+      <% if @user == current_user %>
+      <h2>投稿数の前日比・全週比</h2>
+      <div class="w-75">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>今日の投稿数</th>
+              <th>前日の投稿数</th>
+              <th>前日比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @today_count %></td>
+              <td><%= @yesterday_count %></td>
+              <td><%= @today_yesterday_ratio %>%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>今週の投稿数</th>
+              <th>前週の投稿数</th>
+              <th>前週比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @week_count %></td>
+              <td><%= @week_ago_count %></td>
+              <td><%= @week_ratio %>%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <% end %>
     </div>
 
   </div>
