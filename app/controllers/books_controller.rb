@@ -71,19 +71,6 @@ class BooksController < ApplicationController
     end
   end
 
-    case order
-    when nil then
-      @books = Book.all
-    when 'new'
-      @books = Book.all.order("created_at DESC")
-    when 'high-score'
-      @books = Book.all.order("score DESC")
-    else
-      @books = Book.all
-    end
-
-
-
   def order_books(order)
     case order
     when nil then
@@ -92,8 +79,6 @@ class BooksController < ApplicationController
       @books = Book.all.order("created_at DESC")
     when 'high-score'
       @books = Book.all.order("score DESC")
-    when "post"
-      @books = Book.order(created_at: :DESC)
     when "favorite"
       @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
     else

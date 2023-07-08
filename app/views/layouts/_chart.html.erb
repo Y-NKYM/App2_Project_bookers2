@@ -1,0 +1,30 @@
+<div>
+  <h2>７日間分の投稿数</h2>
+  <table class="table table-bordered">
+   <thead>
+    <tr>
+     <% for i in @week_day %>
+     <th><%= i %></th>
+     <% end %>
+     <th>今日</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><% for i in @weekly_chart.reverse %>
+     <td><%= i %></td>
+     <% end %>
+    </tr>
+   </tbody>
+  </table>
+  <canvas id="myChart2"></canvas>
+</div>
+
+<div id="chart" data-chart="<%= @weekly_chart.reverse %>"></div>
+
+ <script>
+  var crt2 = document.getElementById('myChart2');
+  var chart_data = $('#chart').data('chart');
+
+  window.weekChart(crt2, chart_data)
+  </script>
+

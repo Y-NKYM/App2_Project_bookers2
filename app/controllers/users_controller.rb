@@ -9,11 +9,12 @@ class UsersController < ApplicationController
   def show
     @book = Book.new
     @user = User.find(params[:id])
+    @books = @user.books
 	  # 日での比較
 	  @today_count = @books.where('created_at > ?', Date.today).count
 	  @yesterday_count = @books.where('created_at > ?', Date.yesterday).count
-	  if @today_count == 0
-	    @today_yesterday_ratio = 0
+    if @today_count == 0
+      @today_yesterday_ratio = 0
     elsif @yesterday_count == 0
       @today_yesterday_ratio = 0
     else
@@ -22,12 +23,22 @@ class UsersController < ApplicationController
 	  # 週での比較
 	  @week_count = @books.where(created_at: Date.today.all_week).count
 	  @week_ago_count = @books.where(created_at: Date.today.prev_week.all_week).count
-	  if @week_ago_count == 0
+    if @week_ago_count == 0
 	    @week_ratio = 0
     elsif @week_count == 0
       @week_ratio = 0
     else
       @week_ratio = (@week_count.to_f/@week_ago_count*100).round(0)
+    end
+    # Chart
+    @week_day = ["６日前","５日前","４日前","３日前","２日前","１日前"]
+    @weekly_chart = []
+    for i in 0..6 do
+      if i == 0
+        @weekly_chart << @books.where(created_at: Date.today).count
+      else
+        @weekly_chart << @books.where(created_at: i.day.ago.all_day).count
+      end
     end
 
     # tag用変数
