@@ -35,10 +35,15 @@ class UsersController < ApplicationController
     @weekly_chart = []
     for i in 0..6 do
       if i == 0
-        @weekly_chart << @books.where(created_at: Date.today).count
+        @weekly_chart << @books.where(created_at: Date.today.all_day).count
       else
         @weekly_chart << @books.where(created_at: i.day.ago.all_day).count
       end
+    end
+
+    @date = params[:date]
+    if @date
+      @day_count = @books.where(created_at: Date.parse(@date).all_day).count
     end
 
     # tag用変数
