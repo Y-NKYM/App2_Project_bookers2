@@ -41,11 +41,6 @@ class UsersController < ApplicationController
       end
     end
 
-    @date = params[:date]
-    if @date
-      @day_count = @books.where(created_at: Date.parse(@date).all_day).count
-    end
-
     # tag用変数
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @user.id)
@@ -66,6 +61,15 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
 	  end
+  end
+
+  def search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @date = params[:date]
+    if @date
+      @day_count = @books.where(created_at: Date.parse(@date).all_day).count
+    end
   end
 
   def edit

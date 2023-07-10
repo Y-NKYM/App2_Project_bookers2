@@ -34,7 +34,7 @@ class Book < ApplicationRecord
 
   def get_tag(sent_tags)
   # 普段はtagsはnilになることはない。tagに何も入力しない場合は[]になり、[].nilはfalseとなる。
-    current_tags = tags.pluck(:name)
+    current_tags = tags.pluck(:tag)
     # 現在取得したタグから送られてきたタグを除いてoldtagとする
     old_tags = current_tags - sent_tags
     # 送信されてきたタグから現在存在するタグを除いたタグをnewとする

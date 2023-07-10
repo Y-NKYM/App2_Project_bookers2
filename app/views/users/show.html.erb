@@ -66,14 +66,15 @@
         <%= render 'layouts/chart' %>
 
         <div>
-          <%= form_with url: user_path(@user), local: true, method: :get do |f| %>
+          <%= form_with url: user_search_path(@user), local: false do |f| %>
             <%= f.date_field :date, value: @date %>
             <%= f.submit "検索" %>
           <% end %>
         </div>
         <div id="search_date">
-          <h2>検索結果</h2>
+          <% if @day_count %>
           <%= render 'users/search_date', result: @day_count %>
+          <% end %>
         </div>
 
       </div>
